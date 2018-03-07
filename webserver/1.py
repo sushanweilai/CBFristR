@@ -1,6 +1,7 @@
-import BaseHTTPServer
+import http.server
+from http.server import BaseHTTPRequestHandler,HTTPServer
+class RequestHandler(BaseHTTPRequestHandler):
 
-class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     '''监听　http　请求　返回／page'''
     #page to send back
     Page = '''\
@@ -24,6 +25,6 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
 if __name__=='__main__':
     serverAddress = ('',8080)
-    server = BaseHTTPServer.HTTPServer(serverAddress,RequestHandler)
-    server.server_forever()
+    server = HTTPServer(serverAddress,RequestHandler)
+    server.serve_forever()
 
